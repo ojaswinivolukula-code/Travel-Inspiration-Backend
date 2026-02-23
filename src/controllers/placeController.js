@@ -2,7 +2,7 @@ import * as Place from "../models/placeModel.js";
 
 export const getPlaces = async (req, res, next) => {
   try {
-    const { data, error } = await Place.getAllPlaces();
+    const { data, error } = await Place.getPlaces();
 
     if (error) throw error;
 

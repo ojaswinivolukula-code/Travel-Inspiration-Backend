@@ -1,5 +1,5 @@
 import * as Activity from "../models/activityModel.js";
-import { supabase } from "../config/supabaseClient.js";
+import  supabase  from "../config/supabaseClient.js";
 
 export const getActivitiesByDestination = async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ export const createActivity = async (req, res, next) => {
   try {
     const activityData = {
       ...req.body,
-      user_id: req.user.id
+      
     };
 
     const { data, error } = await Activity.createActivity(activityData);

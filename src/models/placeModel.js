@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabaseClient.js";
+import  supabase from "../config/supabaseClient.js";
 
 // Get all places
 export const getPlaces = async () => {

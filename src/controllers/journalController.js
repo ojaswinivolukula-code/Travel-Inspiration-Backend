@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabaseClient.js";
+import supabase  from "../config/supabaseClient.js";
 
 // Create Journal
 export const createJournal = async (req, res) => {

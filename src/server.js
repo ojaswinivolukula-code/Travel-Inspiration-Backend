@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import authRoutes from "./routes/authRoutes.js"
 import destinationRoutes from "./routes/destinationRoutes.js";
 import tripRoutes from "./routes/tripRoutes.js";
 import journalRoutes from "./routes/journalRoutes.js";
@@ -21,6 +22,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/auth",authRoutes)
 app.use("/api/destinations", destinationRoutes);
 app.use("/api/trips", tripRoutes);
 app.use("/api/journals", journalRoutes);

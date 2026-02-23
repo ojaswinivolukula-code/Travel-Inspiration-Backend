@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabaseClient.js";
+import  supabase  from "../config/supabaseClient.js";
 
 export const getActivitiesByDestination = async (destinationId) => {
   return await supabase
