@@ -2,7 +2,9 @@ import * as Destination from "../models/destinationModel.js";
 
 export const getDestinations = async (req, res, next) => {
   try {
-    const { data, error } = await Destination.getAllDestinations();
+    const filters = req.query;
+
+    const { data, error } = await Destination.getAllDestinations(filters);
 
     if (error) throw error;
 

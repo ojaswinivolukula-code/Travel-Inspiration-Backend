@@ -13,14 +13,17 @@ import activityRoutes from "./routes/activityRoutes.js";
 import followRoutes from "./routes/followRoutes.js";
 import likeRoutes from "./routes/likeRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
+import culinaryRoutes from "./routes/culinaryRoutes.js";
+import tripItemsRoutes from "./routes/TripItemRoutes.js";
+
 import { errorHandler } from "./middleware/errorMiddleware.js";
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173" }));app.use(express.json());
 
 app.use("/api/auth",authRoutes)
 app.use("/api/destinations", destinationRoutes);
@@ -28,12 +31,14 @@ app.use("/api/trips", tripRoutes);
 app.use("/api/journals", journalRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/posts", postRoutes);
-
+app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/places", placeRoutes);
 app.use("/api/activities", activityRoutes);
+app.use("/api/culinary", culinaryRoutes);
 app.use("/api/follows", followRoutes);
 app.use("/api/likes", likeRoutes);
 app.use("/api/comments", commentRoutes);
+app.use("/api/trip-items", tripItemsRoutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;

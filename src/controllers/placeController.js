@@ -1,8 +1,21 @@
 import * as Place from "../models/placeModel.js";
 
-export const getPlaces = async (req, res, next) => {
+export const getAllPlaces = async (req, res, next) => {
   try {
     const { data, error } = await Place.getPlaces();
+
+    if (error) throw error;
+
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+export const getPlacesByDestination = async (req, res, next) => {
+  try {
+    const { destinationId } = req.params;
+
+    const { data, error } = await Place.getPlacesByDestination(destinationId);
 
     if (error) throw error;
 

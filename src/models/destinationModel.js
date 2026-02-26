@@ -1,9 +1,32 @@
 import  supabase  from "../config/supabaseClient.js";
 
-export const getAllDestinations = () => {
-  return supabase.from("destinations").select("*");
-};
+export const getAllDestinations = (filters = {}) => {
+  let query = supabase.from("destinations").select("*");
 
+  if (filters.category) {
+    query = query.eq("category", filters.category);
+  }
+
+  if (filters.climate) {
+    query = query.eq("climate", filters.climate);
+  }
+
+  if (filters.best_season) {
+    query = query.eq("best_season", filters.best_season);
+  }
+
+  if (filters.country) {
+    query = query.ilike("country", `%${filters.country}%`);
+  }
+
+  if (filters.search) {
+    query = query.or(
+      `name.ilike.%${filters.search}%,description.ilike.%${filters.search}%`
+    );
+  }
+
+  return query;
+};
 export const getDestinationById = (id) => {
   return supabase.from("destinations").select("*").eq("id", id).single();
 };
