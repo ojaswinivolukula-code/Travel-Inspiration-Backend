@@ -1,6 +1,10 @@
 import express from "express";
-import authenticateUser from "../middleware/authMiddleware.js"; // ✅ ADD THIS
-import { addTripPlace, addTripActivity, addTripCulinary } from "../controllers/TripItemsController.js";
+import authenticateUser from "../middleware/authMiddleware.js";
+import {
+  addTripPlace,
+  addTripActivity,
+  addTripCulinary,
+} from "../controllers/TripItemsController.js";
 
 const router = express.Router();
 

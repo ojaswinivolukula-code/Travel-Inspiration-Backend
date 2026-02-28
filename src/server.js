@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import authRoutes from "./routes/authRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
 import destinationRoutes from "./routes/destinationRoutes.js";
 import tripRoutes from "./routes/tripRoutes.js";
 import journalRoutes from "./routes/journalRoutes.js";
@@ -16,6 +16,9 @@ import commentRoutes from "./routes/commentRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
 import culinaryRoutes from "./routes/culinaryRoutes.js";
 import tripItemsRoutes from "./routes/TripItemRoutes.js";
+import DealRoutes from "./routes/DealRoutes.js";
+import socialShareRoutes from "./routes/socialShareRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 import { errorHandler } from "./middleware/errorMiddleware.js";
 
@@ -23,9 +26,11 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json({ limit: "10mb" })); // ✅ increased
+app.use(express.urlencoded({ extended: true, limit: "10mb" })); // ✅ added
 
-app.use("/api/auth",authRoutes)
+app.use("/api/auth", authRoutes);
 app.use("/api/destinations", destinationRoutes);
 app.use("/api/trips", tripRoutes);
 app.use("/api/journals", journalRoutes);
@@ -39,6 +44,10 @@ app.use("/api/follows", followRoutes);
 app.use("/api/likes", likeRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/trip-items", tripItemsRoutes);
+app.use("/api/deals", DealRoutes);
+app.use("/api/social-shares", socialShareRoutes);
+app.use("/api/users", userRoutes);
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;

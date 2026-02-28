@@ -1,17 +1,11 @@
 import supabase from "../config/supabaseClient.js";
 
 export const createTrip = async (trip) => {
-  return await supabase
-    .from("trips")
-    .insert([trip])
-    .select();
+  return await supabase.from("trips").insert([trip]).select();
 };
 
 export const getUserTrips = async (user_id) => {
-  return await supabase
-    .from("trips")
-    .select("*")
-    .eq("user_id", user_id);
+  return await supabase.from("trips").select("*").eq("user_id", user_id);
 };
 
 export const getTripById = async (id, user_id) => {
@@ -54,8 +48,17 @@ export const getTripDetails = async (id) => {
       places: places || [],
       activities: activities || [],
       culinary: culinary || [],
-    }
+    },
   };
+};
+
+export const updateTripStatus = async (id, user_id, status) => {
+  return await supabase
+    .from("trips")
+    .update({ status })
+    .eq("id", id)
+    .eq("user_id", user_id)
+    .select();
 };
 
 export const deleteTrip = async (id, user_id) => {

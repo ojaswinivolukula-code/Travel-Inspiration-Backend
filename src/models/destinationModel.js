@@ -1,4 +1,4 @@
-import  supabase  from "../config/supabaseClient.js";
+import supabase from "../config/supabaseClient.js";
 
 export const getAllDestinations = (filters = {}) => {
   let query = supabase.from("destinations").select("*");
@@ -21,7 +21,7 @@ export const getAllDestinations = (filters = {}) => {
 
   if (filters.search) {
     query = query.or(
-      `name.ilike.%${filters.search}%,description.ilike.%${filters.search}%`
+      `name.ilike.%${filters.search}%,description.ilike.%${filters.search}%`,
     );
   }
 

@@ -1,22 +1,20 @@
-import  supabase  from "../config/supabaseClient.js";
+import supabase from "../config/supabaseClient.js";
 
 export const createComment = async (comment) => {
   return await supabase
-    .from("comments")
+    .from("post_comments")
     .insert([comment])
-    .select();
+    .select("*, profiles(name, avatar_url)");
 };
 
 export const getCommentsByPost = async (post_id) => {
   return await supabase
-    .from("comments")
-    .select("*")
-    .eq("post_id", post_id);
+    .from("post_comments")
+    .select("*, profiles(name, avatar_url)")
+    .eq("post_id", post_id)
+    .order("created_at", { ascending: true });
 };
 
 export const deleteComment = async (id) => {
-  return await supabase
-    .from("comments")
-    .delete()
-    .eq("id", id);
+  return await supabase.from("post_comments").delete().eq("id", id);
 };

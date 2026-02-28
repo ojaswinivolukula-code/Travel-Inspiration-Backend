@@ -1,8 +1,5 @@
 import express from "express";
-import {
-  followUser,
-  unfollowUser
-} from "../controllers/followController.js";
+import { followUser, unfollowUser } from "../controllers/followController.js";
 
 import authenticateUser from "../middleware/authMiddleware.js";
 

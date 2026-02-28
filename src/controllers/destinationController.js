@@ -42,7 +42,7 @@ export const updateDestination = async (req, res, next) => {
   try {
     const { data, error } = await Destination.updateDestination(
       req.params.id,
-      req.body
+      req.body,
     );
 
     if (error) throw error;

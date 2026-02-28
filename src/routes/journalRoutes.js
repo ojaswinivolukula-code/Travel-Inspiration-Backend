@@ -5,14 +5,18 @@ import {
   getJournalById,
   updateJournal,
   deleteJournal,
+  getAllJournals,
 } from "../controllers/journalController.js";
+import authenticateUser from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", createJournal);
-router.get("/", getUserJournals);
-router.get("/:id", getJournalById);
-router.put("/:id", updateJournal);
-router.delete("/:id", deleteJournal);
+router.get("/all", getAllJournals); // public journals for community tab
+
+router.post("/", authenticateUser, createJournal);
+router.get("/", authenticateUser, getUserJournals);
+router.get("/:id", authenticateUser, getJournalById);
+router.put("/:id", authenticateUser, updateJournal);
+router.delete("/:id", authenticateUser, deleteJournal);
 
 export default router;

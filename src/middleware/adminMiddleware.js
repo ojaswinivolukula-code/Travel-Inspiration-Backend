@@ -1,8 +1,8 @@
-import  supabase  from "../config/supabaseClient.js";
+import supabase from "../config/supabaseClient.js";
 
 export const isAdmin = async (req, res, next) => {
   try {
-   const userId = req.user.id; // coming from frontend or Postman
+    const userId = req.user.id;
 
     if (!userId) {
       return res.status(401).json({ message: "User ID required" });

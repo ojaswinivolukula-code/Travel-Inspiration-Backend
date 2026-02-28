@@ -5,8 +5,8 @@ export const createTrip = async (req, res, next) => {
     const user_id = req.user.id;
 
     const {
-      destination_id, 
-      name, 
+      destination_id,
+      name,
       status,
       start_date,
       end_date,
@@ -17,8 +17,8 @@ export const createTrip = async (req, res, next) => {
 
     const { data, error } = await Trip.createTrip({
       user_id,
-      destination_id, 
-      name, 
+      destination_id,
+      name,
       status: status || "planned",
       start_date,
       end_date,
@@ -77,12 +77,28 @@ export const getTripDetails = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateTripStatus = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user_id = req.user.id;
+    const { status } = req.body;
+
+    const { data, error } = await Trip.updateTripStatus(id, user_id, status);
+
+    if (error) throw error;
+
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const deleteTrip = async (req, res, next) => {
   try {
     const { id } = req.params;
     const user_id = req.user.id;
-    const { error } = await Trip.deleteTrip(id, user_id); // ✅ uses model
-    if (error) throw error;
+    const { error } = await Trip.deleteTrip(id, user_id);
     res.status(200).json({ message: "Trip deleted" });
   } catch (error) {
     next(error);

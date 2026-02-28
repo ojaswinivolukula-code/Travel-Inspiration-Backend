@@ -1,9 +1,20 @@
 import * as Culinary from "../models/culinaryModel.js";
 
+export const getAllCulinary = async (req, res, next) => {
+  try {
+    const { data, error } = await Culinary.getAllCulinary();
+    if (error) throw error;
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getCulinaryByDestination = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const { data, error } = await Culinary.getCulinaryByDestination(id);
+    const { destinationId } = req.params;
+    const { data, error } =
+      await Culinary.getCulinaryByDestination(destinationId);
     if (error) throw error;
     res.json(data);
   } catch (error) {
@@ -21,12 +32,24 @@ export const createCulinary = async (req, res, next) => {
   }
 };
 
+export const updateCulinary = async (req, res, next) => {
+  try {
+    const { data, error } = await Culinary.updateCulinary(
+      req.params.id,
+      req.body,
+    );
+    if (error) throw error;
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const deleteCulinary = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const { error } = await Culinary.deleteCulinary(id);
+    const { error } = await Culinary.deleteCulinary(req.params.id);
     if (error) throw error;
-    res.json({ message: "Culinary item deleted successfully" });
+    res.json({ message: "Culinary deleted" });
   } catch (error) {
     next(error);
   }

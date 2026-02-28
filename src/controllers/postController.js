@@ -2,7 +2,8 @@ import * as Post from "../models/postModel.js";
 
 export const createPost = async (req, res, next) => {
   try {
-    const { title, content, image_url, trip_id, journal_id, visibility } = req.body;
+    const { title, content, image_url, trip_id, journal_id, visibility } =
+      req.body;
 
     const user_id = req.user.id;
 
@@ -13,7 +14,7 @@ export const createPost = async (req, res, next) => {
       image_url,
       trip_id,
       journal_id,
-      visibility
+      visibility,
     });
 
     if (error) throw error;

@@ -2,7 +2,7 @@ import express from "express";
 import {
   createComment,
   getCommentsByPost,
-  deleteComment
+  deleteComment,
 } from "../controllers/commentController.js";
 
 import authenticateUser from "../middleware/authMiddleware.js";

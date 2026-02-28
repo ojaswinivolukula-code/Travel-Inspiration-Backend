@@ -1,5 +1,9 @@
 import supabase from "../config/supabaseClient.js";
 
+export const getAllCulinary = async () => {
+  return await supabase.from("culinary").select("*");
+};
+
 export const getCulinaryByDestination = async (destinationId) => {
   return await supabase
     .from("culinary")
@@ -8,15 +12,13 @@ export const getCulinaryByDestination = async (destinationId) => {
 };
 
 export const createCulinary = async (culinaryData) => {
-  return await supabase
-    .from("culinary")
-    .insert([culinaryData])
-    .select();
+  return await supabase.from("culinary").insert([culinaryData]).select();
+};
+
+export const updateCulinary = async (id, data) => {
+  return await supabase.from("culinary").update(data).eq("id", id).select();
 };
 
 export const deleteCulinary = async (id) => {
-  return await supabase
-    .from("culinary")
-    .delete()
-    .eq("id", id);
+  return await supabase.from("culinary").delete().eq("id", id);
 };

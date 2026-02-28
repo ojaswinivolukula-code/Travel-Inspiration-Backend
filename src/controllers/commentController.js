@@ -9,7 +9,7 @@ export const createComment = async (req, res, next) => {
     const { data, error } = await Comment.createComment({
       post_id,
       user_id,
-      comment
+      comment,
     });
 
     if (error) throw error;

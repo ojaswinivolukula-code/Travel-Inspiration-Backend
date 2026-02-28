@@ -1,10 +1,7 @@
-import  supabase from "../config/supabaseClient.js";
+import supabase from "../config/supabaseClient.js";
 
 export const followUser = async (follow) => {
-  return await supabase
-    .from("follows")
-    .insert([follow])
-    .select();
+  return await supabase.from("follows").insert([follow]).select();
 };
 
 export const unfollowUser = async (follower_id, following_id) => {

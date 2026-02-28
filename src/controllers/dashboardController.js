@@ -24,13 +24,18 @@ export const getDashboardStats = async (req, res, next) => {
       .select("*", { count: "exact", head: true })
       .eq("following_id", userId);
 
+    const { count: reviewsCount } = await supabase
+      .from("reviews")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", userId);
+
     res.json({
       totalTrips: tripsCount || 0,
       totalJournals: journalCount || 0,
       totalPosts: postCount || 0,
       followers: followersCount || 0,
+      totalReviews: reviewsCount || 0,
     });
-
   } catch (error) {
     next(error);
   }
