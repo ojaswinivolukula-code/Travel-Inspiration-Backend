@@ -193,7 +193,7 @@ Server runs at `http://localhost:5000`
 
 ## 🚀 Deployment Link
 
-⚙️ **Backend (Render):** `https://your-backend.onrender.com` *(update after deployment)*
+⚙️ **Backend (Render):** `https://travel-inspiration-backend.onrender.com` 
 
 ---
 
