@@ -40,6 +40,7 @@ export const createJournal = async (req, res) => {
       .from("journals")
       .insert([
         {
+          user_id,
           title: title.trim(),
           description: description?.trim() || null,
           destination_id: parseDestinationId(destination_id),

@@ -97,3 +97,10 @@ export const login = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+export const getMe = async (req, res) => {
+  try {
+    res.json({ user: req.user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

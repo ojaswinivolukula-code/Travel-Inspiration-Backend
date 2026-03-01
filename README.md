@@ -209,7 +209,6 @@ src/
 ├── utils/
 │   └── apiResponse.js   # Standardized API responses
 └── server.js            # App entry point
-uploads/                 # Multer file uploads
 .env                     # Environment variables (never commit)
 .gitignore
 package.json
