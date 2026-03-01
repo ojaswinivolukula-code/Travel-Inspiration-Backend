@@ -26,13 +26,20 @@ dotenv.config();
 
 const app = express();
 
-
-
 app.use(cors({
-  origin: [
-    'https://travelinspirationapp.netlify.app',
-    'http://localhost:5173'  
-  ],
+  origin: function(origin, callback) {
+    const allowedOrigins = [
+      'https://travelinspirationapp.netlify.app',
+      'http://localhost:5173'
+    ];
+    
+    // Allow any netlify deploy preview URLs
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.netlify.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json({ limit: "10mb" })); 
